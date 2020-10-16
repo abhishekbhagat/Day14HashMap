@@ -16,9 +16,21 @@ public class MyHashMap<K, V> {
 		MyMapNode<K, V> myMapNode = (MyMapNode<K, V>) this.myLinkedList.search(key);
 		if (myMapNode == null) {
 			myMapNode = new MyMapNode<>(key, value);
-			this.myLinkedList.add(myMapNode);
+			this.myLinkedList.append(myMapNode);
 		} else {
 			myMapNode.setValue(value);
 		}
+	}
+	public V remove(K key)
+	{
+		MyMapNode<K, V> myMapNode = (MyMapNode<K, V>) this.myLinkedList.search(key);
+		V value= (myMapNode == null) ? null : myMapNode.getValue();
+		if(myMapNode==null)
+			return null;
+		else
+		{
+			this.myLinkedList.remove(key);
+		}
+		return value;
 	}
 }

@@ -1,4 +1,7 @@
 package com.bridgelabz.problemday14;
+
+import com.bridgelabz.problemday13.Node;
+
 public class MyLinkedList<K> {
 	 INode<K> head;
 	 INode<K> tail;
@@ -6,13 +9,31 @@ public class MyLinkedList<K> {
 		 this.head=null;
 		 this.tail=null;
 	 }
-	public void add(INode<K> newNode) {
+	public void append(INode<K> newNode) {
 		if (head == null && tail == null) {
 			head = newNode;
 			tail = newNode;
 		} else {
-			newNode.setNext(head);
-			head = newNode;
+		    tail.setNext(newNode);
+			tail = newNode;
+		}
+	}
+	public void remove(K data) {
+		INode<K> node=head;
+		INode<K> prevNode=null;
+		while(node!=null) {
+			if(node.getKey().equals(data))
+				break;
+			prevNode=node;
+			node=node.getNext();
+		}
+		if(prevNode==null) {
+			head=head.getNext();
+		}
+		else
+		{
+		    prevNode.setNext(node.getNext());
+		    node.setNext(null);
 		}
 	}
 	public void printMyNode() {
